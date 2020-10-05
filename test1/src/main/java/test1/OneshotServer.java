@@ -7,7 +7,7 @@ import java.net.Socket;
 
 public class OneshotServer {
 
-	static int PORT = 25;
+	static int PORT = 1025;
 	static final boolean LOG = true;
 
 	private static void clog(String message) {
