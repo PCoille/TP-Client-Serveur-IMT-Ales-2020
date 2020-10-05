@@ -1,0 +1,1 @@
+D:\apps\eclipse2020\eclipse\eclipse.exe -data . -vm D:\java\jdk-11.0.8\bin\javaw.exe
