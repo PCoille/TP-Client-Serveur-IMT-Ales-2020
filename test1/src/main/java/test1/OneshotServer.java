@@ -4,6 +4,20 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/*
+ 
+ 
+ 
+ 
+cmd pour lancer eclipse sur voter workspace [votre dossier]\eclipse.exe -data . -vm [votrejdk]\bin\javaw.exe
+echo %JAVA_HOME%
+PATH=%PATH%;%JAVA_HOME%\bin\
+si JAVA_HOME existe et si ok pour eclipse enlever -vm [votrejdk]\bin\javaw.exe
+attention, dans .gitignore ne pas laisser *.xml car cela supprime pom.xml => plus de maven
+ 
+ 
+ */
+
 
 public class OneshotServer {
 
@@ -23,7 +37,10 @@ public class OneshotServer {
 		if (socketService!=null)
 		  clog("un client s'est connecté");
 		
-
+		
+		
+		
+		
 		if (LOG)
 			clog("terminé");
 	}
