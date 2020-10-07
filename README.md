@@ -5,4 +5,4 @@
 
 * Dev Client Serveur
 
-* seance-2
+* seance-2 merged to master
