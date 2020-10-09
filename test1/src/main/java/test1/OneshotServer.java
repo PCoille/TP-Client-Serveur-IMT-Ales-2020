@@ -20,7 +20,6 @@ attention, dans .gitignore ne pas laisser *.xml car cela supprime pom.xml => plu
  
  */
 
-
 public class OneshotServer {
 
 	static int PORT = 1025;
@@ -36,23 +35,33 @@ public class OneshotServer {
 			clog("je suis le serveur, j'écoute sur le port " + PORT);
 		ServerSocket socketEcoute = new ServerSocket(PORT);
 		Socket socketService = socketEcoute.accept();
-		if (socketService!=null)
-		  clog("un client s'est connecté "+socketService.getRemoteSocketAddress());
+		if (socketService != null)
+			clog("un client s'est connecté " + socketService.getRemoteSocketAddress());
 		BufferedReader entree = new BufferedReader(new InputStreamReader(socketService.getInputStream()));
 		PrintStream sortie = new PrintStream(socketService.getOutputStream());
-		sortie.println("votre question ?");
-		String requeteClient = entree.readLine();
-		String reponse;
-		clog("le client demande "+requeteClient);
-		if (requeteClient.endsWith("date"))
-			reponse = new Date().toString();
-		else
-			 reponse = "requete inconnue";
-		clog("Réponse = "+reponse);
-		String mesg = String.format("Bonjour, ici le serveur, vous avez demandé [%s], voici la réponse:[%s]",requeteClient,reponse);
-		sortie.println(mesg);
-	    socketService.close();
-	    socketEcoute.close();
+
+		boolean end = false;
+
+		while (!end) {
+			sortie.println("votre question ?");
+			String requeteClient = entree.readLine();
+			String reponse;
+			clog("le client demande " + requeteClient);
+			if (requeteClient.endsWith("date"))
+				reponse = new Date().toString();
+			else if (requeteClient.endsWith("fin")) {
+				reponse = "fin de la session";
+				end = true;
+			} else
+				reponse = "requete inconnue";
+			clog("Réponse = " + reponse);
+			String mesg = String.format("Bonjour, ici le serveur, vous avez demandé [%s], voici la réponse:[%s]",
+					requeteClient, reponse);
+			sortie.println(mesg);
+		}
+
+		socketService.close();
+		socketEcoute.close();
 		if (LOG)
 			clog("terminé");
 	}
@@ -61,4 +70,4 @@ public class OneshotServer {
 
 //added maven wrapper ok
 //demo pull git
-//demo
+//demo branch 4
