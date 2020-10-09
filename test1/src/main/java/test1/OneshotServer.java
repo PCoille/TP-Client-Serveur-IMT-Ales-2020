@@ -58,3 +58,5 @@ public class OneshotServer {
 	}
 
 }
+
+//added maven wrapper
