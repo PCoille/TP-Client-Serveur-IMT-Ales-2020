@@ -69,7 +69,7 @@ public class ThreadedServer {
 
 	public static void main(String[] args) throws IOException {
 		if (LOG)
-			clog("je suis le serveur, j'écoute sur le port " + PORT);
+			clog("je suis le serveur multitache, j'écoute sur le port " + PORT);
 		ServerSocket socketEcoute = new ServerSocket(PORT);
 		while (!endserver) {
 			Socket socketService = socketEcoute.accept();

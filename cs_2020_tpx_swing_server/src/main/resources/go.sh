@@ -1,0 +1,1 @@
+java -jar socket-swing-server-jar-with-dependencies.jar
