@@ -31,7 +31,7 @@ public class ServerGui extends JFrame implements ActionListener, IWsGui {
 
 	
 	private IServerController server;
-	private String log;
+	private String log = "";
 	private IServerController controler; 
 
 	public void setControler(Object ctrl) {
@@ -143,11 +143,11 @@ public class ServerGui extends JFrame implements ActionListener, IWsGui {
 		logTxt.setText(log);
 	}
 
-	public void refreshView() {
-		log("refresh view");
-		
-	}
+	@Override
+	public void refreshFig() {
+		log("refreshFig");
 
+	}
 
 
 	public void refresh(Rectangle ovni) {
@@ -184,6 +184,20 @@ public class ServerGui extends JFrame implements ActionListener, IWsGui {
 	@Override
 	public void setId(Object identifier) {
 		// NOTHING
+		
+	}
+
+
+	@Override
+	public void setup() {
+		boolean tb = true;
+		
+	}
+
+
+	@Override
+	public void addFigure(String figure) {
+	//NOTHING
 		
 	}
 

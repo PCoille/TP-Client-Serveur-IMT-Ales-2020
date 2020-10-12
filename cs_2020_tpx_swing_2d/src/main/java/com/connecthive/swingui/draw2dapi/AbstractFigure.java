@@ -14,18 +14,18 @@ import javax.swing.JComponent;
 
 
 
-public abstract class AbstractFigure implements IDrawable {
+public abstract class AbstractFigure implements IFigure {
 	private Rectangle bounds;
-	private State state;
+	private Attributes attributes;
 
-	public AbstractFigure(State state) {
+	public AbstractFigure(Attributes attr) {
 		bounds = new Rectangle();
-		this.state = state;
+		this.attributes = attr;
 	}
 
 	@Override
-	public State getState() {
-		return state;
+	public Attributes getAttributes() {
+		return attributes;
 	}
 
 	public abstract Shape getShape();
@@ -44,11 +44,18 @@ public abstract class AbstractFigure implements IDrawable {
 	public Rectangle getBounds() {
 		return bounds;
 	}
+	
+	public String toString() {
+	     return  this.getClass().getSimpleName()+" [x=" + bounds.x + ",y=" + bounds.y + ",width=" +bounds. width + ",height=" + bounds.height + "]";
+	}
+
+	public abstract String toCode();
+	
 
 	@Override
 	public void paint(JComponent parent, Graphics2D g2d) {
 		Shape shape = getShape();
-		State state = getState();
+		Attributes state = getAttributes();
 		Rectangle bounds = getBounds();
 		final BasicStroke dashed = new BasicStroke(state.lineWidth, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0,
 				new float[] { state.dashLength }, 0);
