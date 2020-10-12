@@ -13,7 +13,7 @@ public interface IConstants {
     static final int ID1 = 2;
 	static final int ID2 = 3;	
 	//static final int DEFAULT_PORT = 8092;
-	static final int DEFAULT_PORT = 8092;
+	static final int DEFAULT_PORT = 8100;
 	//static final String DEFAULT_HOST = "192.168.1.95";	
 	//static final String DEFAULT_HOST = "127.0.0.1";	
 	//static final String DEFAULT_HOST = "192.168.1.50";	
