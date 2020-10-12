@@ -49,5 +49,6 @@ Thumbs.db
 *.wmv
 /.metadata/
 
-cs_2020_tp1_simple_servers/.classpath
-cs_2020_tpx_api/.classpath
+.classpath
+.project
+.settings
