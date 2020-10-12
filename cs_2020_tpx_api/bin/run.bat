@@ -1,2 +1,0 @@
-cd target
-go.bat
