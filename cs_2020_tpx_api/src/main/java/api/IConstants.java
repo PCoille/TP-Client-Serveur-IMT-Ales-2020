@@ -16,6 +16,7 @@ public interface IConstants {
 	//static final String DEFAULT_HOST = "192.168.1.95";	
 	static final String DEFAULT_HOST = "127.0.0.1";	
 	static final String KW_CIRCLE = "circle";
+	static final String KW_OVAL = "oval";
 	static final String KW_POLYLINE = "polyline";
 	static final String KW_POLYCIRCLE = "polycircle";
 	static final String KW_LINE = "line";

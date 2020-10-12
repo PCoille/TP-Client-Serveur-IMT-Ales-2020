@@ -94,6 +94,17 @@ public class MServiceTask extends Thread implements IServicetask {
 			} catch (Exception e) {
 				getOutput().println("erreur dans la commande " + request + " format attendu:" + "x y radius");
 			}
+		}  if (req[0].equals(IConstants.KW_OVAL)) {
+			try {
+				String figure = req[0] + " ";
+				figure += req[1] + " " + req[2] + " " + req[3]+ " " + req[4];
+				server.addFigure(figure);
+				server.broadcast(this, figure);
+				server.log(figure);
+				getOutput().println(figure);
+			} catch (Exception e) {
+				getOutput().println("erreur dans la commande " + request + " format attendu:" + "x y w h");
+			}
 		} else if (req[0].equals(IConstants.KW_BOMB)) {
 			try {
 				String figure = req[0] + " ";

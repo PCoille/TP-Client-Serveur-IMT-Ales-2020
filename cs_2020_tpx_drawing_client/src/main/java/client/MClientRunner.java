@@ -1,10 +1,12 @@
 package client;
 
-import com.connecthive.swingui.ClientGui;
 
 
 import api.IModel;
 import api.ISessionClient;
+
+import com.connecthive.swingui.draw2d.DrawApp;
+
 import api.IClientControler;
 import api.IWsGui;
 import common.Model;
@@ -21,8 +23,9 @@ public class MClientRunner {
 	    sessionClient_ = new MClientSocket();//new ClientSocket(uri);
 		controler.setModel(model);
 		controler.setSessionClient(sessionClient_);
-	    gui = new ClientGui(); //does not really draw, only log
-	   // gui = new DrawingApplication(); //TODO
+	    gui = new DrawApp();//ClientGui();
+
+		gui.setup();
 	    gui.setControler(controler);
 	   
 	    controler.setGui(gui);

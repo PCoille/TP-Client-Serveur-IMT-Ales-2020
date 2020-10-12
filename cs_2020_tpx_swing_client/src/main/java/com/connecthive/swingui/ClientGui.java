@@ -35,12 +35,12 @@ public class ClientGui extends JFrame implements ActionListener, IWsGui {
 	private JButton echo;
 	private JButton connect_;
 	private JButton disconnect;
-	private JTextArea logTxt;
+	private JTextArea logTxt_;
 	private JLabel res;
 
 
 	private static final int MAX_LOG_LINES = 18;
-	private String log;
+	private String log="";
 	private int lign_ = 0;
 
 	private IClientControler controler;
@@ -117,13 +117,13 @@ public class ClientGui extends JFrame implements ActionListener, IWsGui {
 		connect_.addActionListener(this);
 		contentpane.add(connect_);
 
-		logTxt = new JTextArea();
-		logTxt.setFont(new Font("Arial", Font.PLAIN, 15));
-		logTxt.setSize(423, 350);
-		logTxt.setLocation(10, 146);
-		logTxt.setLineWrap(true);
-		logTxt.setEditable(false);
-		contentpane.add(logTxt);
+		logTxt_ = new JTextArea();
+		logTxt_.setFont(new Font("Arial", Font.PLAIN, 15));
+		logTxt_.setSize(423, 350);
+		logTxt_.setLocation(10, 146);
+		logTxt_.setLineWrap(true);
+		logTxt_.setEditable(false);
+		contentpane.add(logTxt_);
 
 		res = new JLabel("");
 		res.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -135,6 +135,7 @@ public class ClientGui extends JFrame implements ActionListener, IWsGui {
 		messageTextField.setBounds(110, 117, 227, 20);
 		contentpane.add(messageTextField);
 		messageTextField.setColumns(10);
+		messageTextField.setText("oval 200 100 40 40");
 		
 		JLabel lblMsg = new JLabel("Port");
 		lblMsg.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -159,7 +160,7 @@ public class ClientGui extends JFrame implements ActionListener, IWsGui {
         	log = "";
         }
 		log += message + "\r\n";
-		logTxt.setText(log);
+		logTxt_.setText(log);
 	}
 
 	private void addMessage() { // send
@@ -230,12 +231,13 @@ public class ClientGui extends JFrame implements ActionListener, IWsGui {
 	public void clearView() {
 		log = "";
 		lign_ = 0;
-		logTxt.setText(log);
+		logTxt_.setText(log);
 
 	}
 
-	public void refreshView() {
-		log("refreshView");
+	@Override
+	public void refreshFig() {
+		log("refreshFig");
 
 	}
 
@@ -265,4 +267,23 @@ public class ClientGui extends JFrame implements ActionListener, IWsGui {
 		log("id="+id[0]+"."+id[1]+"."+id[2]);
 		
 	}
+
+
+
+
+	@Override
+	public void setup() {
+		boolean tb = true;
+		
+	}
+
+
+
+
+	@Override
+	public void addFigure(String figure) {
+		//NOTHING
+		
+	}
 }
+//before remove clientgui

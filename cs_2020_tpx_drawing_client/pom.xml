@@ -5,7 +5,7 @@
 	<groupId>com.connecthive</groupId>
 	<artifactId>socket-swing-client</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>socket swing client</name>
+	<name>socket drawing client</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -24,7 +24,11 @@
 			<artifactId>socket-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-	
+		<dependency>
+			<groupId>com.connecthive</groupId>
+			<artifactId>socket-swing-2d</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
 
 

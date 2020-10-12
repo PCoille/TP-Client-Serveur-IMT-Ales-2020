@@ -9,14 +9,16 @@ import javax.swing.JComponent;
 
 
 
-public interface IDrawable {
+public interface IFigure {
 	public void paint(JComponent parent, Graphics2D g2d);
 
 	public void setLocation(Point location);
 
 	public void setSize(Dimension size);
 
-	public State getState();
+	public Attributes getAttributes();
 
 	public Rectangle getBounds();
+
+	public String toCode();
 }

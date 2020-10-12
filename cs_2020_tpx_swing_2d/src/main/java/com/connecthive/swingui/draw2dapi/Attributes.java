@@ -1,15 +1,15 @@
-package com.connecthive.swingui.draw2d;
+package com.connecthive.swingui.draw2dapi;
 
 import java.awt.Color;
 
-public class State {
+public class Attributes {
 
-	private final Color foreground, background;
-	private final boolean gradient, filled, dashed;
-	final int lineWidth;
-	final int dashLength;
+	private Color foreground, background;
+	private boolean gradient, filled, dashed;
+	public int lineWidth;
+	public int dashLength;
 
-	public State(Color foreground, Color background, boolean gradient, boolean filled, boolean dashed,
+	public Attributes(Color foreground, Color background, boolean gradient, boolean filled, boolean dashed,
 			int lineWidth, int dashLength) {
 		this.foreground = foreground;
 		this.background = background;
@@ -18,6 +18,16 @@ public class State {
 		this.dashed = dashed;
 		this.lineWidth = lineWidth;
 		this.dashLength = dashLength;
+	}
+
+	public Attributes() {
+		this.foreground = Color.black;
+		this.background  = Color.white;
+		this.gradient = false;
+		this.filled = false;
+		this.dashed = false;
+		this.lineWidth = 2;
+		this.dashLength = 20;
 	}
 
 	public Color getForeground() {

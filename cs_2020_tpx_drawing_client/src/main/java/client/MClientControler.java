@@ -176,7 +176,8 @@ public class MClientControler extends Thread implements IClientControler {
 
 	@Override
 	public void refreshFigure(String figure) {
-		gui.log("refreshview "+figure);
+	//	gui.log("refreshFigure "+figure);
+		gui.addFigure(figure);
 	}
 
 	@Override
@@ -188,5 +189,11 @@ public class MClientControler extends Thread implements IClientControler {
 	public int[] getIdentifiers() {
 		return identifiers;
 	}
+/*
+	@Override
+	public void refreshModel(String figure) {
+		gui.refreshModel(figure);
+		
+	}*/
 
 }

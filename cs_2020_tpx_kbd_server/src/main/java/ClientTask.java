@@ -1,5 +1,4 @@
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,13 +22,12 @@ public class ClientTask extends Thread {
 
 	private PrintStream output;
 	private ThreadedServer server;
-	
-	
+
 	public ClientTask(ThreadedServer server, int id) {
 		this.server = server;
 		this.id = id;
 	}
-	
+
 	private synchronized PrintStream getOutput_() {
 		return output;
 	}
@@ -54,7 +52,7 @@ public class ClientTask extends Thread {
 		if (request.toLowerCase().contains("quit")) {
 			getOutput_().println("stopping session");
 			if (ThreadedServer.BROADCAST)
-				   server.broadcast(this, "stopping session "+getId());
+				server.broadcast(this, "stopping session " + getId());
 			return false;
 		} else {
 			String[] req = request.split(" ");
@@ -62,7 +60,7 @@ public class ClientTask extends Thread {
 				String msg = "the server will shutdown in 5 seconds";
 				getOutput_().println(msg);
 				if (ThreadedServer.BROADCAST)
-				   server.broadcast(this, msg);
+					server.broadcast(this, msg);
 				new Thread(new Runnable() {
 					@Override
 					public void run() {
@@ -70,18 +68,29 @@ public class ClientTask extends Thread {
 						Util.globalEnd = true;
 					}
 				}).start();
-			} if (req[0].toLowerCase().equals("date")) {
+			}
+			if (req[0].toLowerCase().equals("date")) {
 				Date now = new Date();
 				String msg = "il est " + now.toString();
 				getOutput_().println(msg);
 				if (ThreadedServer.BROADCAST)
-					   server.broadcast(this, msg);
+					server.broadcast(this, msg);
 			} else if (req[0].toLowerCase().equals("circle")) {
 				try {
 					String msg = Util.circle(req);
 					getOutput_().println(msg);
 					if (ThreadedServer.BROADCAST)
-						   server.broadcast(this, msg);
+						server.broadcast(this, msg);
+				} catch (Exception e) {
+					getOutput_().println("erreur dans la commande " + request + " format attendu:" + "x y radius");
+				}
+			} else if (req[0].toLowerCase().equals("oval") || req[0].toLowerCase().equals("rectangle")
+					|| req[0].toLowerCase().equals("line")) {
+				try {
+					String msg = request;
+					getOutput_().println(msg);
+					if (ThreadedServer.BROADCAST)
+						server.broadcast(this, msg);
 				} catch (Exception e) {
 					getOutput_().println("erreur dans la commande " + request + " format attendu:" + "x y radius");
 				}
@@ -92,7 +101,7 @@ public class ClientTask extends Thread {
 					String response = "element added ";
 					getOutput_().println(response);
 					if (ThreadedServer.BROADCAST)
-						   server.broadcast(this, response);
+						server.broadcast(this, response);
 				} catch (InterruptedException e) {
 					interrupted = true;
 					return false;
@@ -103,7 +112,7 @@ public class ClientTask extends Thread {
 					String response = "element removed: " + element;
 					getOutput_().println(response);
 					if (ThreadedServer.BROADCAST)
-						   server.broadcast(this, response);
+						server.broadcast(this, response);
 				} catch (InterruptedException e) {
 					interrupted = true;
 					return false;
@@ -117,7 +126,7 @@ public class ClientTask extends Thread {
 				response += "'add [element name]";
 				response += "'remove\n";
 				getOutput_().println(response);
-				
+
 			}
 
 		}
@@ -153,7 +162,7 @@ public class ClientTask extends Thread {
 		}
 		ended = true;
 		Util.log(this, "session " + id + " ends");
-		
+
 		server.remove(this);
 	}
 
@@ -164,8 +173,7 @@ public class ClientTask extends Thread {
 	public void send(String data) {
 		if (!socketService.isClosed())
 			getOutput_().println(data);
-		
-	}
 
+	}
 
 }

@@ -242,7 +242,7 @@ public class MClientSocket implements ISessionClient {
 			else if (!doAddFigure())
 				clean();
 		}
-		viewRefreshModel();
+		//viewRefreshModel();
 	}
 
 	private void clear() {
@@ -443,11 +443,12 @@ public class MClientSocket implements ISessionClient {
 	private void viewSetLocal(String host, int port) {
 		controler.log("viewSetLocal " + host + "  " + port);
 	}
-
+/*
 	private void viewRefreshModel() {
-		controler.log("refreshmodel");
+	//	controler.log("refreshmodel");
+		controler.refreshModel();
 	}
-
+*/
 	private void clean() {
 		controler.log("clean");
 	}
