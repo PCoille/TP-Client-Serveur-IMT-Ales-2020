@@ -1,0 +1,1 @@
+java -jar socket-keyboard-client-jar-with-dependencies.jar
