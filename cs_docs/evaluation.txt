@@ -1,4 +1,5 @@
-
+L'évaluation ne porte que sur les TP
+A rendre début janvier sous réserve des contraintes de date limite de rendu des notes.
 
 faire fonctionner tous les projets
 réussir le déploiement du serveur, test avec le client graphique
