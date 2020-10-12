@@ -53,7 +53,8 @@ public class SocketPanel extends JPanel implements ActionListener ,ISocketPanel{
 		this.setLayout(layout);
 
 		tip = new JTextField();
-		tip.setText("192.168.1.50");
+	
+		tip.setText(IConstants.DEFAULT_HOST);
 		tip.setFont(new Font("Arial", Font.PLAIN, 15));
 		tip.setSize(132, 20);
 		

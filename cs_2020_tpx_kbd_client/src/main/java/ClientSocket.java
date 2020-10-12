@@ -21,7 +21,7 @@ public class ClientSocket {
 
 	private static final boolean LOG = true;
 
-	private static final int DEFAULT_PORT = 8092;
+	private static final int DEFAULT_PORT = 8009;
 	private static final String DEFAULT_HOST = "164.132.226.205";//tranquil-shelf-73723.herokuapp.com";
 
 	// private IModel model;
@@ -30,7 +30,7 @@ public class ClientSocket {
 	private String response;
 	private PrintWriter out;
 	private BufferedReader in;
-	private Socket clientSocket;
+	private Socket clientSocket_;
 	private SessionThread sessionTask;
 	private String host;
 	private boolean pending;
@@ -78,12 +78,12 @@ public class ClientSocket {
 			throw new IOException("host error");
 
 		try {
-			clientSocket = new Socket(serverName, serverPort);
+			clientSocket_ = new Socket(serverName, serverPort);
 			if (LOG)
 				clog("success for " + serverName + "." + serverPort);
 			// pendingSessions.remove(this);
 			pending = false;
-			host = clientSocket.getLocalAddress().getHostAddress();
+			host = clientSocket_.getLocalAddress().getHostAddress();
 			viewSetLocal(host, serverPort);// port);
 
 		} catch (ConnectException e) {
@@ -100,8 +100,8 @@ public class ClientSocket {
 				throw new IOException("connection error");
 			}
 		}
-		in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-		out = new PrintWriter(clientSocket.getOutputStream(), true); // autoflush
+		in = new BufferedReader(new InputStreamReader(clientSocket_.getInputStream()));
+		out = new PrintWriter(clientSocket_.getOutputStream(), true); // autoflush
 
 		sendIdentification();
 		info("Connected to the server");
@@ -136,9 +136,9 @@ public class ClientSocket {
 		}
 		info("closing socket");
 
-		if (clientSocket != null)
+		if (clientSocket_ != null)
 			try {
-				clientSocket.close();
+				clientSocket_.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -268,14 +268,14 @@ public class ClientSocket {
 	}
 
 	private boolean isConnected() {
-		boolean result = clientSocket != null && !clientSocket.isClosed() && clientSocket.isConnected();
+		boolean result = clientSocket_ != null && !clientSocket_.isClosed() && clientSocket_.isConnected();
 		if (!result) {
 			if (LOG) {
-				if (clientSocket == null)
+				if (clientSocket_ == null)
 					clog("clientSocket == null");
-				if (clientSocket != null && clientSocket.isClosed())
+				if (clientSocket_ != null && clientSocket_.isClosed())
 					clog("clientSocket.isClosed()");
-				if (clientSocket != null && !clientSocket.isConnected())
+				if (clientSocket_ != null && !clientSocket_.isConnected())
 					clog("!clientSocket.isConnected()");
 			}
 		}
@@ -479,13 +479,13 @@ public class ClientSocket {
 	}
 
 	private boolean isConnected(String[] ip) {
-		if (clientSocket == null)
+		if (clientSocket_ == null)
 			return false;
 		if (sessionTask == null || sessionTask.isInterrupted())
 			return false;
 		boolean idem = ip[0].equals(serverName) && ip[1].equals(Integer.toString(serverPort));
 		if (idem) {
-			if (clientSocket.isConnected())
+			if (clientSocket_.isConnected())
 				return true;
 		} else {
 			disconnect(true);
@@ -545,7 +545,7 @@ public class ClientSocket {
 		return identifiers;
 	}
 
-	public static void mai_n(String[] args) {
+	public static void main(String[] args) {
 		ClientSocket s = new ClientSocket();
 		s.runClient(DEFAULT_HOST, DEFAULT_PORT);
 	}
