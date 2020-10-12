@@ -76,7 +76,8 @@ public class ClientGui extends JFrame implements ActionListener, IWsGui {
 		contentpane.add(name);
 
 		tip = new JTextField();
-		tip.setText("192.168.1.50");
+
+		tip.setText(IConstants.DEFAULT_HOST);
 		tip.setFont(new Font("Arial", Font.PLAIN, 15));
 		tip.setSize(190, 20);
 		tip.setLocation(110, 54);
