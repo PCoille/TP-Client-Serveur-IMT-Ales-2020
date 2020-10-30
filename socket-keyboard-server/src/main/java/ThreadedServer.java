@@ -66,3 +66,4 @@ public class ThreadedServer {
 
 }
 //see https://medium.com/@sulmansarwar/run-your-java-application-as-a-service-on-ubuntu-544531bd6102
+//test port 1025
