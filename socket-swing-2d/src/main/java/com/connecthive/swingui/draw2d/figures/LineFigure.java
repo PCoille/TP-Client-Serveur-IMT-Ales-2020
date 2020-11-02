@@ -21,7 +21,11 @@ public class LineFigure extends AbstractFigure {
 	@Override
 	public String toCode() {
 	  	Rectangle bounds = getBounds();
-	    return  "line " + bounds.x + " " + bounds.y + " " +bounds. width + " " + bounds.height;
+	  	Attributes attr = getAttributes();
+	  	
+	    return  "line " + bounds.x + " " + bounds.y + " " +bounds. width + " " + bounds.height
+	    		+ " " + attr.getForeground().getRGB() + " " + attr.getBackground().getRGB() + " " + attr.isGradient() + " " 
+	    		+ attr.isFilled() + " " + attr.isDashed() + " " + attr.getLineWidth() + " " + attr.getDashLength();
 	}
 	
 	

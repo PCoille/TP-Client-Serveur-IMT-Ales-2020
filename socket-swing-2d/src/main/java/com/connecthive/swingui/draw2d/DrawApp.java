@@ -1,6 +1,7 @@
 package com.connecthive.swingui.draw2d;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -266,7 +267,16 @@ public class DrawApp extends JFrame implements IDrawingApp,IWsGui {
 		int y = Integer.parseInt(p[2]);
 		int w = Integer.parseInt(p[3]);
 		int h = Integer.parseInt(p[4]);
-		Attributes attr = new Attributes();
+
+		int fgColor = Integer.parseInt(p[5]);
+		int bgColor = Integer.parseInt(p[6]);
+		boolean isGradient = Boolean.parseBoolean(p[7]);
+		boolean isFilled = Boolean.parseBoolean(p[8]);
+		boolean isDashed = Boolean.parseBoolean(p[9]);
+		int lineWidth = Integer.parseInt(p[10]);
+		int dashLength = Integer.parseInt(p[11]);
+		
+		Attributes attr = new Attributes(new Color(fgColor), new Color(bgColor), isGradient, isFilled, isDashed, lineWidth, dashLength);
 		IFigure f = new OvalFigure(attr);
 		Dimension size = new Dimension(w,h);
 		Point location = new Point(x,y);
@@ -282,8 +292,41 @@ public class DrawApp extends JFrame implements IDrawingApp,IWsGui {
 		int y = Integer.parseInt(p[2]);
 		int w = Integer.parseInt(p[3]);
 		int h = Integer.parseInt(p[4]);
-		Attributes attr = new Attributes();
+		
+		int fgColor = Integer.parseInt(p[5]);
+		int bgColor = Integer.parseInt(p[6]);
+		boolean isGradient = Boolean.parseBoolean(p[7]);
+		boolean isFilled = Boolean.parseBoolean(p[8]);
+		boolean isDashed = Boolean.parseBoolean(p[9]);
+		int lineWidth = Integer.parseInt(p[10]);
+		int dashLength = Integer.parseInt(p[11]);
+		
+		Attributes attr = new Attributes(new Color(fgColor), new Color(bgColor), isGradient, isFilled, isDashed, lineWidth, dashLength);
 		IFigure f = new RectangleFigure(attr);
+		Dimension size = new Dimension(w,h);
+		Point location = new Point(x,y);
+		f.setSize(size);
+		f.setLocation(location);
+		addFigure(f); //oval 234 141 31 57
+	}
+	
+	private void addLine(String message) {
+		String[] p = message.split(" ");
+		int x = Integer.parseInt(p[1]);
+		int y = Integer.parseInt(p[2]);
+		int w = Integer.parseInt(p[3]);
+		int h = Integer.parseInt(p[4]);
+		
+		int fgColor = Integer.parseInt(p[5]);
+		int bgColor = Integer.parseInt(p[6]);
+		boolean isGradient = Boolean.parseBoolean(p[7]);
+		boolean isFilled = Boolean.parseBoolean(p[8]);
+		boolean isDashed = Boolean.parseBoolean(p[9]);
+		int lineWidth = Integer.parseInt(p[10]);
+		int dashLength = Integer.parseInt(p[11]);
+		
+		Attributes attr = new Attributes(new Color(fgColor), new Color(bgColor), isGradient, isFilled, isDashed, lineWidth, dashLength);
+		IFigure f = new LineFigure(attr);
 		Dimension size = new Dimension(w,h);
 		Point location = new Point(x,y);
 		f.setSize(size);
@@ -298,6 +341,8 @@ public class DrawApp extends JFrame implements IDrawingApp,IWsGui {
 			addOval(message);
 		} else 	if (message.startsWith("rectangle")) {
 			addRectangle(message);
+		} else 	if (message.startsWith("line")) {
+			addLine(message);
 		}
 		
 		

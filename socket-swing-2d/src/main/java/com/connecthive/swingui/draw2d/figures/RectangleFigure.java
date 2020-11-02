@@ -19,7 +19,11 @@ public class RectangleFigure extends AbstractFigure {
 	@Override
 	public String toCode() {
 	  	Rectangle bounds = getBounds();
-	    return  "rectangle " + bounds.x + " " + bounds.y + " " +bounds. width + " " + bounds.height;
+	  	Attributes attr = getAttributes();
+	  	
+	    return  "rectangle " + bounds.x + " " + bounds.y + " " +bounds. width + " " + bounds.height
+	    		+ " " + attr.getForeground().getRGB() + " " + attr.getBackground().getRGB() + " " + attr.isGradient() + " " 
+	    		+ attr.isFilled() + " " + attr.isDashed() + " " + attr.getLineWidth() + " " + attr.getDashLength();
 	}	
 	
 	
