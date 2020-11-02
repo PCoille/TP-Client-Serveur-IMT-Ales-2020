@@ -39,10 +39,10 @@ public class MClientControler extends Thread implements IClientControler {
 		gui.log(m);
 	}
 
-	private void runClient(String uri) {
+	private void runClient(String uri, int port) {
 		gui.log("Socket client: open socket client at " + uri);
-		sessionClient.setHost(uri, IConstants.DEFAULT_PORT);
-		sessionClient.runClient(uri, IConstants.DEFAULT_PORT);
+		sessionClient.setHost(uri, port);
+		sessionClient.runClient(uri, port);
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class MClientControler extends Thread implements IClientControler {
 	private boolean openConnection(String uri, int port) {
 		try {
 			// URI u = new URI(webSocketAddress);// + "/"+clientId);
-			runClient(uri);
+			runClient(uri, port);
 			return true;
 		} catch (Exception e) {
 			gui.log("unable to open socket");

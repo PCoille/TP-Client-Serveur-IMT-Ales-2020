@@ -32,6 +32,7 @@ public class SocketPanel extends JPanel implements ActionListener ,ISocketPanel{
 	private String bar = "Bar";
 
 	private JTextField tip;
+	private JTextField portTextField;
 	private JButton echo;
 	private JButton connect;
 	private JLabel res;
@@ -60,6 +61,14 @@ public class SocketPanel extends JPanel implements ActionListener ,ISocketPanel{
 		
 		add(tip);
 
+		portTextField = new JTextField();
+		
+		portTextField.setText(""+IConstants.DEFAULT_PORT);
+		portTextField.setFont(new Font("Arial", Font.PLAIN, 15));
+		portTextField.setSize(132, 20);
+		
+		add(portTextField);
+		
 		//gengp = new ButtonGroup();
 
 		echo = new JButton("Echo");
@@ -109,9 +118,11 @@ public class SocketPanel extends JPanel implements ActionListener ,ISocketPanel{
 
 	private void connect() {
 		String ip = tip.getText();
+		int port = Integer.parseInt(portTextField.getText());
+		
 		if (!ip.isEmpty()) {
 			logm("connect:" + ip);
-			this.drawingApplication.connect(ip, IConstants.DEFAULT_PORT);
+			this.drawingApplication.connect(ip, port);
 		}
 	}
 
